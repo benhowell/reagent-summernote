@@ -7,7 +7,7 @@ Add the css files (adjusting paths to suit) to the head of your file
 ```cljs
 [:head
  ;; other head stuff ...
- (for [x ["/bootstrap/css/bootstrap/3.3.6/css/bootstrap.min.css"  
+ (for [x ["/bootstrap/css/bootstrap.min.css"  
           "/summernote/css/summernote.css"
           ;; other css files ... ]]
    (include-css x)))]
