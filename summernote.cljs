@@ -1,4 +1,3 @@
-```cljs
 (ns summernote
   (:require
    [reagent.core :as r]
@@ -81,4 +80,3 @@
         (reset! component-id id)
         (reset! value text)
         [:div {:id (str "summernote-editor-" @component-id)}])})))
-```
