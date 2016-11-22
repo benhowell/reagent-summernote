@@ -1,5 +1,5 @@
 # reagent-summernote
-Basic reagent wrapper recipe for [summernote](http://summernote.org/).
+Basic [reagent](http://reagent-project.github.io/) wrapper recipe for [summernote](http://summernote.org/).
 
 ## Usage
 
