@@ -25,13 +25,13 @@ Add the js files (adjusting paths to suit) to the body of your file (note: `root
 ```
 
 reagent-summernote takes the following parameters:
- * id (string): the unique id of the component
+ * id (string): a unique id for your summernote component
  * text (string | html): the initial text displayed
  * on-change-fn (function): the function to call when editor text changes
 
 In your reagent app, use summernote like so:
 ```cljs
-(ns your.component
+(ns your.component.or.view
   (:require
    [summernote :as summernote]
    ;; other requires ... ))
