@@ -8,10 +8,7 @@ Add the css files (adjusting paths to suit) to the head of your file
 [:head
  ;; other head stuff ...
  (for [x ["/bootstrap/css/bootstrap.min.css"  
-          "/summernote/css/summernote.css"
-          ;; other css files ...
-          ]]
-   (include-css x)))]
+          "/summernote/css/summernote.css"]] (include-css x)))]
 ```
 
 Add the js files (adjusting paths to suit) to the body of your file (note: `root-container` is where out reagent app mounts)
@@ -20,10 +17,7 @@ Add the js files (adjusting paths to suit) to the body of your file (note: `root
  [:div {:id "root-container" :style "height: inherit"}]
  (for [x ["/jquery/js/jquery-2.2.2.min.js"
           "/bootstrap/js/bootstrap_3.3.6.min.js"
-          "/summernote/js/summernote.min.js"
-          ;; other js libs ...
-          ]]
-   (include-js x))]
+          "/summernote/js/summernote.min.js"]](include-js x))]
 ```
 
 reagent-summernote takes the following parameters:
@@ -35,9 +29,7 @@ In your reagent app, use summernote like so:
 ```cljs
 (ns your.component.or.view
   (:require
-   [summernote :as summernote]
-   ;; other requires ...
-   ))
+   [summernote :as summernote]))
    
    [:div
     [summernote/editor
