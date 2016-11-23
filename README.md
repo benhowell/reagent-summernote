@@ -9,7 +9,8 @@ Add the css files (adjusting paths to suit) to the head of your file
  ;; other head stuff ...
  (for [x ["/bootstrap/css/bootstrap.min.css"  
           "/summernote/css/summernote.css"
-          ;; other css files ... ]]
+          ;; other css files ...
+          ]]
    (include-css x)))]
 ```
 
@@ -20,7 +21,8 @@ Add the js files (adjusting paths to suit) to the body of your file (note: `root
  (for [x ["/jquery/js/jquery-2.2.2.min.js"
           "/bootstrap/js/bootstrap_3.3.6.min.js"
           "/summernote/js/summernote.min.js"
-          ;; other js libs ... ]]
+          ;; other js libs ...
+          ]]
    (include-js x))]
 ```
 
@@ -34,7 +36,8 @@ In your reagent app, use summernote like so:
 (ns your.component.or.view
   (:require
    [summernote :as summernote]
-   ;; other requires ... ))
+   ;; other requires ...
+   ))
    
    [:div
     [summernote/editor
