@@ -60,20 +60,15 @@
                                         ;;"help"
                                         ]]]})
 
-        (if @value
-          (.summernote @this "code" @value)))
+        (if @value (.summernote @this "code" @value)))
 
       :component-did-update
-      (fn []
-        (if @value
-          (.summernote @this "code" @value)))
+      (fn [] (if @value (.summernote @this "code" @value)))
 
       :component-will-unmount
-      (fn []
-        (println "destroy")
-        (.summernote @this "destroy"))
+      (fn [] (.summernote @this "destroy"))
 
-      :display-name  (str "summernote-editor-" id)
+      :display-name (str "summernote-editor-" id)
 
       :reagent-render
       (fn [id text]
