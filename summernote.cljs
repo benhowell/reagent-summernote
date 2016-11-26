@@ -12,8 +12,7 @@
            (reset! value %)
            (on-change-fn
             @component-id
-            (if (s/blank? @value) nil @value))
-           )]
+            (if (s/blank? @value) nil @value)))]
     (r/create-class
      {:component-did-mount
       (fn [component]
