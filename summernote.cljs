@@ -59,10 +59,10 @@
                                         ;;"help"
                                         ]]]})
 
-        (if @value (.summernote @this "code" @value)))
+        (.summernote @this "code" @value))
 
       :component-did-update
-      (fn [] (if @value (.summernote @this "code" @value)))
+      (fn [] (.summernote @this "code" @value))
 
       :component-will-unmount
       (fn [] (.summernote @this "destroy"))
