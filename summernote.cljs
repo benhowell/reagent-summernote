@@ -3,14 +3,15 @@
    [reagent.core :as r]
    [clojure.string :as s]))
 
-(defn editor [id text on-change-fn]
-  (let [component-id (r/atom nil)
+(defn editor [{:keys [id text on-change-fn]}]
+  (let [component-id (r/atom id)
         this (r/atom nil)
-        value (r/atom nil)
+        value (r/atom text)
+        on-change (r/atom on-change-fn)
         change-fn
         #(do
            (reset! value %)
-           (on-change-fn
+           (@on-change
             @component-id
             (if (s/blank? @value) nil @value)))]
     (r/create-class
@@ -58,8 +59,15 @@
                                         "codeview"
                                         ;;"help"
                                         ]]]})
-
         (.summernote @this "code" @value))
+
+      :component-will-receive-props
+      (fn [component next-props]
+        (if-not (= (r/props component) (second next-props))
+          (do
+            (reset! component-id (:id (second next-props)))
+            (reset! value (:text (second next-props)))
+            (reset! on-change (:on-change-fn (second next-props))))))
 
       :component-did-update
       (fn [] (.summernote @this "code" @value))
@@ -67,10 +75,11 @@
       :component-will-unmount
       (fn [] (.summernote @this "destroy"))
 
-      :display-name (str "summernote-editor-" id)
+      :display-name  (str "summernote-editor-" id)
 
       :reagent-render
-      (fn [id text]
-        (reset! component-id id)
-        (reset! value text)
+      (fn [{:keys [id text]}]
         [:div {:id (str "summernote-editor-" @component-id)}])})))
+
+   
+                             
