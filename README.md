@@ -33,9 +33,9 @@ In your reagent app, use summernote like so:
    
    [:div
     [summernote/editor
-    "my-summernote-component-id"
-    "welcome to reagent-summernote!"
-    #(println (str "id " %1 " text changed: " %2])]]
+    {:id "my-summernote-component-id"
+     :text "welcome to reagent-summernote!"
+     :on-change-fn #(println (str "id " %1 " text changed: " %2))}]]
    
    
 ```
