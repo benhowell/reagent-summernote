@@ -78,7 +78,7 @@
       :display-name  (str "summernote-editor-" id)
 
       :reagent-render
-      (fn [{:keys [id]}]
+      (fn []
         [:div {:id (str "summernote-editor-" @component-id)}])})))
 
    
