@@ -1,5 +1,5 @@
 # reagent-summernote
-Basic [reagent](http://reagent-project.github.io/) recipe for [summernote](http://summernote.org/). This is by no means a complete implementation. See the [summernote API](http://summernote.org/deep-dive/) for additional options and callback functions. This recipe provides a clear enough template to riff on. The DOM id argument is redundant and only provided as a means of out-of-band identity.
+Basic [reagent](http://reagent-project.github.io/) recipe for [summernote](http://summernote.org/). This is by no means a complete implementation. See the [summernote API](http://summernote.org/deep-dive/) for additional options and callback functions. This recipe provides a clear enough template to riff on.
 
 ## Usage
 
