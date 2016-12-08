@@ -1,7 +1,6 @@
 (ns summernote
   (:require
-   [reagent.core :as r]
-   [clojure.string :as s]))
+   [reagent.core :as r]))
 
 (defn summernote-editor [{:keys [id text on-change-fn]}]
   (let [id (atom id)
