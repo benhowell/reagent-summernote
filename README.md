@@ -1,5 +1,5 @@
 # reagent-summernote
-Basic [reagent](http://reagent-project.github.io/) recipe for [summernote](http://summernote.org/).
+Basic [reagent](http://reagent-project.github.io/) recipe for [summernote](http://summernote.org/). This is by no means a complete implementation. See (http://summernote.org/deep-dive/)[Summernote API] for additional options and callback functions. This recipe provides a clear enough template to riff on. 
 
 ## Usage
 
@@ -39,3 +39,5 @@ In your reagent app, use summernote like so:
    
    
 ```
+
+
