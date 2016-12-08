@@ -3,24 +3,22 @@
    [reagent.core :as r]
    [clojure.string :as s]))
 
-(defn editor [{:keys [id text on-change-fn]}]
-  (let [component-id (r/atom id)
+(defn summernote-editor [{:keys [id text on-change-fn]}]
+  (let [id (atom id)
         this (r/atom nil)
         value (r/atom text)
-        on-change (r/atom on-change-fn)
-        change-fn
-        #(do
-           (reset! value %)
-           (@on-change
-            @component-id
-            (if (s/blank? @value) nil @value)))]
+        reset? (atom false)]
     (r/create-class
      {:component-did-mount
       (fn [component]
         (reset! this (js/$ (r/dom-node component)))
         (.summernote @this #js
                      {:callbacks
-                      #js {:onChange change-fn}
+                      #js {:onChange
+                           #(if-not @reset?
+                              (on-change-fn (.summernote @this "code"))
+                              (reset! reset? false))}
+                      :disableDragAndDrop true
                       :fontNames #js ["Helvetica Neue"
                                       "Helvetica"
                                       "Arial"
@@ -58,28 +56,27 @@
                        #js ["misc" #js ["fullscreen"
                                         "codeview"
                                         ;;"help"
-                                        ]]]})
-        (.summernote @this "code" @value))
+                                        ]]]}))
+
 
       :component-will-receive-props
       (fn [component next-props]
-        (if-not (= (r/props component) (second next-props))
+        (if-not (= (second next-props) (r/props component))
           (do
-            (reset! component-id (:id (second next-props)))
+            (reset! reset? true)
+            (reset! id (:id (second next-props)))
             (reset! value (:text (second next-props)))
-            (reset! on-change (:on-change-fn (second next-props))))))
+            (.summernote @this "code" @value))))
 
-      :component-did-update
-      (fn [] (.summernote @this "code" @value))
 
       :component-will-unmount
-      (fn [] (.summernote @this "destroy"))
+      (fn []
+        (println "destroy")
+        (.summernote @this "destroy"))
 
-      :display-name  (str "summernote-editor-" id)
+      :display-name  (str "summernote-editor")
 
       :reagent-render
       (fn []
-        [:div {:id (str "summernote-editor-" @component-id)}])})))
-
-   
-                             
+        [:div {:id (str "summernote-editor-" id)
+               :dangerouslySetInnerHTML {:__html @value}}])})))
