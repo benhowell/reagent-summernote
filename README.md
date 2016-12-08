@@ -1,5 +1,7 @@
 # reagent-summernote
-Basic [reagent](http://reagent-project.github.io/) recipe for [summernote](http://summernote.org/). This is by no means a complete implementation. See the [summernote API](http://summernote.org/deep-dive/) for additional options and callback functions. This recipe provides a clear enough template to riff on.
+Basic [reagent](http://reagent-project.github.io/) recipe for [summernote](http://summernote.org/). A single instance could be used for multiple components using the `id` parameter.
+
+This is by no means a complete implementation. See the [summernote API](http://summernote.org/deep-dive/) for additional options and callback functions. This recipe provides a clear enough template to riff on.
 
 ## Usage
 
@@ -21,7 +23,7 @@ Add the js files (adjusting paths to suit) to the body of your file (note: `root
 ```
 
 reagent-summernote takes the following parameters:
- * id (string): a unique (DOM) id for your summernote component
+ * id (string): a unique id to associate with the text in your summernote component
  * text (string | html): the initial text displayed
  * on-change-fn (function): the function to call when editor text changes
 
@@ -36,8 +38,6 @@ In your reagent app, use summernote like so:
     {:id "my-summernote-component-id"
      :text "welcome to reagent-summernote!"
      :on-change-fn #(println (str text changed: " %))}]]
-   
-   
 ```
 
 
