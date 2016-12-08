@@ -3,8 +3,7 @@
    [reagent.core :as r]))
 
 (defn summernote-editor [{:keys [id text on-change-fn]}]
-  (let [id (atom id)
-        this (r/atom nil)
+  (let [this (r/atom nil)
         value (r/atom text)
         reset? (atom false)]
     (r/create-class
@@ -15,7 +14,9 @@
                      {:callbacks
                       #js {:onChange
                            #(if-not @reset?
-                              (on-change-fn (.summernote @this "code"))
+                              (do
+                                (reset! value (.summernote @this "code"))
+                                (on-change-fn (.summernote @this "code")))
                               (reset! reset? false))}
                       :disableDragAndDrop true
                       :fontNames #js ["Helvetica Neue"
@@ -53,17 +54,18 @@
                                           "hr"]]
                        #js ["table" #js ["table"]]
                        #js ["misc" #js ["fullscreen"
-                                        "codeview"
+                                        "code view"
                                         ;;"help"
                                         ]]]}))
 
 
       :component-will-receive-props
       (fn [component next-props]
-        (if-not (= (second next-props) (r/props component))
+        (if (or
+             (not= (:text (second next-props)) @value)
+             (not= (:id (r/props component)) (:id (second next-props))))
           (do
             (reset! reset? true)
-            (reset! id (:id (second next-props)))
             (reset! value (:text (second next-props)))
             (.summernote @this "code" @value))))
 
