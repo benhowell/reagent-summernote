@@ -18,7 +18,6 @@
                                 (reset! value (.summernote @this "code"))
                                 (on-change-fn (.summernote @this "code")))
                               (reset! reset? false))}
-                      :disableDragAndDrop true
                       :fontNames #js ["Helvetica Neue"
                                       "Helvetica"
                                       "Arial"
