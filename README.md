@@ -37,7 +37,7 @@ In your reagent app, use summernote like so:
     [summernote/editor
     {:id "my-summernote-component-id"
      :text "welcome to reagent-summernote!"
-     :on-change-fn #(println (str text changed: " %))}]]
+     :on-change-fn #(println (str "text changed: " %))}]]
 ```
 
 
